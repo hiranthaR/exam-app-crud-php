@@ -33,16 +33,12 @@
         <br><br><br>
         <input type="submit" value="Login" style="width: 250px" class="form-button">
         <br><br>
-        <div style="color: white;cursor: help" onclick="help()">Need help? Click here!</div>
+        <div class="tooltip">Need help?
+            <span class="tooltiptext">
+                This is the login non-authenticating login.This just implemented for archive 3 levels of access for the app.Enter your name and choose a role for login in.thank you!
+            </span>
+        </div>
     </form>
-
-    <div id="help-text" style="color: white;width: 600px;margin: auto;margin-top: 30px"></div>
-
-    <script>
-        function help() {
-            document.getElementById("help-text").innerHTML = "This is the login non authenticating login.This just implemented for gather various levels of access for the app.Enter your name and choose a role for login in.thank you!"
-        }
-    </script>
 
 </div>
 </body>
