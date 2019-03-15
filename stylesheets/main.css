@@ -1,0 +1,28 @@
+body{
+    background-color: #333333;
+}
+
+.forms{
+    border: #7f7f7f 2px solid;
+    background-color: #2f2f2f;
+    padding: 20px;
+}
+
+.form-input{
+    background-color: transparent;
+    color: white;
+    border: 1px #8f8f8f solid;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.form-button{
+    background-color: #8f8f8f;
+    color: #ffffff;
+    height: 35px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
