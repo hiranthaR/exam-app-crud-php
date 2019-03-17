@@ -6,6 +6,16 @@
  * Time: 7:20 PM
  */
 
+if(session_status() == PHP_SESSION_NONE) session_start();
+if(!isset($_POST["username"]) && !isset($_SESSION["username"])) {
+    header("location: ./../");
+    die();
+} else {
+    if(!isset($_SESSION["username"]))
+        $_SESSION["username"] = $_POST["username"];
+}
+
+
 ?>
 
 <!doctype html>

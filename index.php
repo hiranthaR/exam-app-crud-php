@@ -6,6 +6,11 @@
  * Time: 4:03 PM
  */
 
+if(session_status() == PHP_SESSION_NONE) session_start();
+if(isset($_SESSION["username"])) {
+    header("location: ./home/");
+    die();
+}
 ?>
 
 <html>

@@ -8,4 +8,6 @@
 
 echo "<div class='nav-bar'>
         <div class='nav-bar-title'>iALevel</div>
+        <img src='./../icons/user.png' alt='profile' class='nav-bar-icon'>
+        <img src='./../icons/user.png' alt='profile' class='nav-bar-icon'>
 </div>";
