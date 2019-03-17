@@ -14,6 +14,7 @@
     <meta name="author" content="Hirantha">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="icon" href="./icons/user.png">
     <title>Login Section</title>
 </head>
 <body>
