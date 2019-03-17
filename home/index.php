@@ -40,6 +40,10 @@ $questionNumber = 32;
 </head>
 <body>
 <?php include_once "./../components/nav_bar.php" ?>
-<?php createQuestion($questionYear,$questionNumber)?>
+<?php echo createQuestion($questionYear,$questionNumber)?>
+<?php echo createAnswer(null); ?>
+<?php echo createAnswer(null); ?>
+<?php echo createAnswer(null); ?>
+<?php echo createAnswer(null); ?>
 </body>
 </html>

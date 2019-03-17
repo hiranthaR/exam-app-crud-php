@@ -40,5 +40,38 @@ function createQuestion($questionYear, $questionNumber)
 </ol>
 </div>";
 
-    echo $qestionView;
+    return $qestionView;
+}
+
+function createAnswer($answer)
+{
+    $answerView = "<div class='answer-box'>
+<div class='answer-box-answer'>sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.</div>
+<div class='answer-box-user-band'>
+
+<img src='./../icons/user.png' alt='user' style='height: 18px;width: 18px;float: left'>
+<a href='#' style='color: blue'>
+<span style='margin-left: 3px;'>Hirantha</span>
+</a>
+
+<img src='./../icons/dot-menu.png' alt='user' style='height: 18px;width: 18px;float: right'>
+
+<a href='#' style='color: white;'>
+<span style='margin-left: 3px;margin-right: 13px;float: right'>10</span>
+<img src='./../icons/chat.png' alt='user' style='height: 18px;width: 18px;float: right'>
+</a>
+
+<a href='#' style='color: white;'>
+<span style='margin-left: 3px;margin-right: 8px;float: right'>12</span>
+<img src='./../icons/dislike.png' alt='user' style='height: 18px;width: 18px;float: right'>
+</a>
+
+<a href='#' style='color: white;'>
+<span style='margin-left: 3px;margin-right: 8px;float: right'>123</span>
+<img src='./../icons/like.png' alt='user' style='height: 18px;width: 18px;float: right'>
+</a>
+
+</div>
+</div>";
+    return $answerView;
 }

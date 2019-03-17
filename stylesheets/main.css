@@ -86,7 +86,7 @@ body{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    margin-left: 10px;
+    margin-left: 0px;
     font-family: "Courier 10 Pitch", serif;
 }
 
