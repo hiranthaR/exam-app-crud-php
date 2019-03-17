@@ -6,6 +6,8 @@
  * Time: 7:20 PM
  */
 
+require_once "./../components/forum.php";
+
 if (session_status() == PHP_SESSION_NONE) session_start();
 if (!isset($_POST["username"]) && !isset($_SESSION["username"])) {
     header("location: ./../");
@@ -21,13 +23,6 @@ if (!isset($_POST["username"]) && !isset($_SESSION["username"])) {
 // but my part of here is crud of forum.so i hardcode question and answers
 $questionYear = 2018;
 $questionNumber = 32;
-$questionSubject = "Physics";
-$question = "Where is my shoe sakdladjlsa lj ladjkla jaljdalsj ladjlasdjlajdlj ajlas dal aldkj asjla djlkad asljk a jdlak?";
-$answer1 = "answer 1 is a";
-$answer2 = "answer 2 is b";
-$answer3 = "answer 3 is c";
-$answer4 = "answer 4 is d";
-$answer5 = "answer 5 is e";
 
 ?>
 
@@ -45,26 +40,6 @@ $answer5 = "answer 5 is e";
 </head>
 <body>
 <?php include_once "./../components/nav_bar.php" ?>
-<div class="question-box">
-    <div class="question-header"><?php echo $questionSubject . " " . $questionYear . " - " . $questionNumber ?></div>
-    <div class="question"><?php echo $question ?></div>
-    <ol>
-        <li>
-            <div class="answer"><?php echo $answer1 ?></div>
-        </li>
-        <li>
-            <div class="answer"><?php echo $answer2 ?></div>
-        </li>
-        <li>
-            <div class="answer"><?php echo $answer3 ?></div>
-        </li>
-        <li>
-            <div class="answer"><?php echo $answer4 ?></div>
-        </li>
-        <li>
-            <div class="answer"><?php echo $answer5 ?></div>
-        </li>
-    </ol>
-</div>
+<?php createQuestion($questionYear,$questionNumber)?>
 </body>
 </html>
