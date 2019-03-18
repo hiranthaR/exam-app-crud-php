@@ -41,9 +41,18 @@ $questionNumber = 32;
 <body>
 <?php include_once "./../components/nav_bar.php" ?>
 <?php echo createQuestion($questionYear,$questionNumber)?>
-<?php echo createAnswer(null); ?>
-<?php echo createAnswer(null); ?>
-<?php echo createAnswer(null); ?>
-<?php echo createAnswer(null); ?>
+<div id="answers-container">
+    <?php echo createAnswer(null); ?>
+    <?php echo createAnswer(null); ?>
+    <?php echo createAnswer(null); ?>
+    <?php echo createAnswer(null); ?>
+</div>
+<?php echo createInsertBoard(); ?>
+
+<script>
+    function submit() {
+
+    }
+</script>
 </body>
 </html>
