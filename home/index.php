@@ -23,6 +23,9 @@ if (!isset($_POST["username"]) && !isset($_SESSION["username"])) {
 // but my part of here is crud of forum.so i hardcode question and answers
 $questionYear = 2018;
 $questionNumber = 32;
+$questionSubjectCode = "phy";
+$username = $_POST["username"];
+$answer = array('owner' => 'hirantha' , 'answer_text' => 'answer textsdsadaddsadsad asd asd asd asd sa da',"likes" => 10,"dislikes" => 15);
 
 ?>
 
@@ -36,23 +39,47 @@ $questionNumber = 32;
     <link rel="stylesheet" href="./../stylesheets/main.css">
     <link rel="stylesheet" href="./../stylesheets/forum.css">
     <link rel="icon" href="./../icons/user.png">
+    <script src="./../jquery/jquery.min.js"></script>
     <title>Forum Thread</title>
 </head>
 <body>
 <?php include_once "./../components/nav_bar.php" ?>
-<?php echo createQuestion($questionYear,$questionNumber)?>
+<?php echo createQuestion($questionYear, $questionNumber,$questionSubjectCode) ?>
 <div id="answers-container">
-    <?php echo createAnswer(null); ?>
-    <?php echo createAnswer(null); ?>
-    <?php echo createAnswer(null); ?>
-    <?php echo createAnswer(null); ?>
+    <?php echo createAnswer($answer); ?>
+    <?php echo createAnswer($answer); ?>
+    <?php echo createAnswer($answer); ?>
+    <?php echo createAnswer($answer); ?>
 </div>
 <?php echo createInsertBoard(); ?>
 
 <script>
-    function submit() {
-
-    }
+    $(document).ready(function () {
+        $('#answer-form').on('submit', function (e) {
+            e.preventDefault();
+            var data = $('#answer-form').serializeArray();
+            data.push({name:"owner",value:"<?php echo $username ?>"});
+            data.push({name:"question_year",value:"<?php echo $questionYear?>"});
+            data.push({name:"question_number",value:"<?php echo $questionNumber ?>"});
+            data.push({name:"question_subject_code",value:"<?php echo $questionSubjectCode ?>"});
+            $.ajax({
+                    url: './../controllers/database/forum_queries.php',
+                    data: data,
+                    method: 'post',
+                    success: function (data) {
+                        $('#answer-form').trigger('reset');
+                        document.getElementById("answers-container").innerHTML += data;
+                    },
+                    error: function (e) {
+                        console.log(e.status);
+                        console.log(e.message);
+                        console.log(e.responseText);
+                        alert("error:" + e.message);
+                    }
+                }
+            );
+        })
+    });
 </script>
 </body>
 </html>

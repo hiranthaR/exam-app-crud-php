@@ -12,9 +12,9 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 
-function createQuestion($questionYear, $questionNumber)
+function createQuestion($questionYear, $questionNumber,$questionSubjectCode)
 {
-    $questionSubject = "Physics";
+    $questionSubject = $questionSubjectCode == "phy" ? "Physics":"other";
     $question = "Where is my shoe sakdladjlsa lj ladjkla jaljdalsj ladjlasdjlajdlj ajlas dal aldkj asjla djlkad asljk a jdlak?";
     $answer1 = "answer 1 is a";
     $answer2 = "answer 2 is b";
@@ -50,29 +50,35 @@ function createQuestion($questionYear, $questionNumber)
 function createAnswer($answer)
 {
 
+    $answerText = trim($answer['answer_text']);
+    $answerText = str_replace("\r\n","</br>",$answerText);
+    $owner = $answer["owner"];
+    $likes = $answer['likes'];
+    $dislikes = $answer['dislikes'];
+
     $username = strtolower($_SESSION['username']);
 
     $delete = "";
     //render if owner or admin delete function
-    if($username == 'hirantha'){
+    if($username == $owner){
         $delete = "<img src='./../icons/delete.png' alt='delete' style='height: 18px;margin:auto 10px;width: 18px;float: right'>";
     }
 
     $edit = "";
     //render if owner edit function
-    if($username == 'hirantha'){
+    if($username == $owner){
         $edit = "<img src='./../icons/edit.png' alt='edit' style='height: 18px;margin:auto 10px;width: 18px;float: right'>";
     }
 
 
 
     $answerView = "<div class='answer-box'>
-<div class='answer-box-answer'>sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.sample comment is this came from database.</div>
+<div class='answer-box-answer'>" . $answerText ."</div>
 <div class='answer-box-user-band'>
 
 <img src='./../icons/user.png' alt='user' style='height: 18px;width: 18px;float: left'>
 <a href='#' style='color: white;text-decoration: none'>
-<span style='margin-left: 3px;'>Hirantha</span>
+<span style='margin-left: 3px;'>".$owner."</span>
 </a>
 
 ".$delete."
@@ -84,12 +90,12 @@ function createAnswer($answer)
 </a>
 
 <a href='#' style='color: white;'>
-<span style='margin-left: 3px;margin-right: 10px;float: right'>12</span>
+<span style='margin-left: 3px;margin-right: 10px;float: right'>".$dislikes."</span>
 <img src='./../icons/dislike.png' alt='user' style='height: 18px;width: 18px;float: right'>
 </a>
 
 <a href='#' style='color: white;'>
-<span style='margin-left: 3px;margin-right: 10px;float: right'>123</span>
+<span style='margin-left: 3px;margin-right: 10px;float: right'>".$likes."</span>
 <img src='./../icons/like.png' alt='user' style='height: 18px;width: 18px;float: right'>
 </a>
 
@@ -100,8 +106,8 @@ function createAnswer($answer)
 
 function createInsertBoard(){
     $insertView = "<div class='answer-box'>
-    <form action='' onsubmit='submit()' method='post' id='answer-form' style='padding: 10px'>
-    <textarea rows='5' form='answer-form' name='answer' style='resize: none;width: 100%;font-size: 14px'></textarea>
+    <form id='answer-form' style='padding: 10px'>
+    <textarea rows='5' form='answer-form' name='answer_text' style='resize: none;width: 100%;font-size: 14px'></textarea>
     <input type='submit' value='Add answer'>
 </form>
 </div>";
