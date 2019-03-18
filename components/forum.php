@@ -35,9 +35,11 @@ function createQuestion($questionYear, $questionNumber, $questionSubjectCode)
     <li>
         <div class='answer'>" . $answer3 . "</div>
     </li>
+    <u><b>
     <li>
         <div class='answer'>" . $answer4 . "</div>
     </li>
+    </b></u>
     <li>
         <div class='answer'>" . $answer5 . "</div>
     </li>
@@ -54,22 +56,24 @@ function createAnswer($answer)
     $owner = $answer["owner"];
     $likes = $answer['likes'];
     $dislikes = $answer['dislikes'];
+    $answerID = $answer['answer_id'];
 
     $username = strtolower($_SESSION['username']);
+    $role = strtolower($_SESSION['role']);
 
     $delete = "";
     //render if owner or admin delete function
-    if ($username == $owner) {
-        $delete = "<img src='./../icons/delete.png' alt='delete' style='height: 18px;margin:auto 10px;width: 18px;float: right'>";
+    if ($username == $owner || $role == 'moderator') {
+        $delete = "<img src='./../icons/delete.png' onclick='deleteAnswer(" . $answerID . ");' alt='delete' style='height: 18px;margin:auto 10px;width: 18px;float: right'>";
     }
 
     $edit = "";
     //render if owner edit function
     if ($username == $owner) {
-        $edit = "<img src='./../icons/edit.png' alt='edit' style='height: 18px;margin:auto 10px;width: 18px;float: right'>";
+        $edit = "<img src='./../icons/edit.png' onclick='showHideBand(" . $answerID . ");' alt='edit' style='height: 18px;margin:auto 10px;width: 18px;float: right'>";
     }
 
-    $answerView = "<div class='answer-box'>
+    $answerView = "<div class='answer-box' id='answer-box-" . $answerID . "'>
 <div class='answer-box-answer'>" . $answerText . "</div>
 <div class='answer-box-user-band'>
 
@@ -97,6 +101,13 @@ function createAnswer($answer)
 </a>
 
 </div>
+<div class='answer-box-edit-band' hidden id='edit-band-" . $answerID . "'>
+<form style='text-align: right' id='edit-form-" . $answerID . "'>
+<textarea rows='5' form='edit-form-" . $answerID . "' name='answer_text' style='resize: none;width: 100%;font-size: 14px'>" . str_replace("</br>", "\r\n", $answerText) . "</textarea>
+ <br>
+    <input type='submit' value='Edit Answer' class='form-button'>
+</form>
+</div>
 </div>";
     return $answerView;
 }
@@ -107,7 +118,7 @@ function createInsertBoard()
     <div style='background-color: #454545;color: white;font-size: 18px;padding: 2px 7px'>Add new Comment</div>
     <form id='answer-form' style='padding: 10px;text-align: right'>
     <textarea rows='5' form='answer-form' name='answer_text' style='resize: none;width: 100%;font-size: 14px'></textarea>
-    <br><br>
+    <br>
     <input type='submit' value='Add answer' class='form-button'>
 </form>
 </div>";

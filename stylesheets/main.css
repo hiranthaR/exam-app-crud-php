@@ -99,3 +99,15 @@ body{
     margin-right: 10px;
     transform: translateY(-50%);
 }
+
+.nav-bar-username{
+    position: relative;
+    top: 50%;
+    font-family: "Courier 10 Pitch", serif;
+    margin-right: 5px;
+    font-weight: bold;
+    transform: translateY(-20%);
+    font-size: 22px;
+    float: right;
+    color: #ffffff;
+}

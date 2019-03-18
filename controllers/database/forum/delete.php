@@ -10,6 +10,8 @@ require_once "./../connection.php";
 
 $tableForumAnswers = "answers";
 
+//TODO: check permission
+
 if ($connection) {
     $answerID = $_POST['id'];
     deleteAnswer($answerID);

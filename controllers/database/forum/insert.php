@@ -48,6 +48,8 @@ function insertForumAnswer($row)
         . $row['dislikes'] . ");";
 
     if (mysqli_query($connection, $sql)) {
+        $id = mysqli_insert_id($connection);
+        $row += ['answer_id' => $id];
         echo createAnswer($row);
     } else {
         echo "<div style='border: 2px red solid;color: red'>Error:While inserting!</div>";

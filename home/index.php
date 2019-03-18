@@ -15,6 +15,8 @@ if (!isset($_POST["username"]) && !isset($_SESSION["username"])) {
 } else {
     if (!isset($_SESSION["username"]))
         $_SESSION["username"] = $_POST["username"];
+    if (!isset($_SESSION['role']))
+        $_SESSION['role'] = $_POST['role'];
 }
 
 // temporary hardcode question data
@@ -49,11 +51,31 @@ $username = $_POST["username"];
 <?php echo createInsertBoard(); ?>
 
 <script>
+
+    function showHideBand(id) {
+        document.getElementById("edit-band-" + id).hidden = !document.getElementById("edit-band-" + id).hidden;
+    }
+
+    function deleteAnswer(id) {
+        $.ajax({
+            url: './../controllers/database/forum/delete.php',
+            method: 'post',
+            data: {id: id},
+            success: function (data) {
+                // document.getElementById("answer-box-" + id).innerHTML = "";
+                document.getElementById("answer-box-" + id).remove();
+            },
+            error: function (e) {
+                console.log(e.status);
+            }
+        });
+    }
+
     $(document).ready(function () {
 
         $.ajax({
             url: "./../controllers/database/forum/read_answers.php",
-            method:'get',
+            method: 'get',
             success: function (data) {
                 document.getElementById("answers-container").innerHTML += data;
             },

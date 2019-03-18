@@ -6,6 +6,10 @@
  * Time: 8:46 PM
  */
 
+if(session_status() == PHP_SESSION_NONE) session_start();
+
+$username = $_SESSION['username'];
+
 echo "<div class='nav-bar'>
         <img src='./../icons/menu.png' alt='menu' class='nav-bar-icon' style='float: left;margin: auto 5px'>
         <div class='nav-bar-title'>iALevel</div>
@@ -14,5 +18,6 @@ echo "<div class='nav-bar'>
         </a>
         <img src='./../icons/settings.png' alt='settings' class='nav-bar-icon'>
         <img src='./../icons/user.png' alt='profile' class='nav-bar-icon'>
+        <div class='nav-bar-username'>".$username."</div>
 </div>";
 
