@@ -8,8 +8,8 @@
 
 if (session_status() == PHP_SESSION_NONE) session_start();
 
-require_once "./../../components/forum.php";
-require_once "./connection.php";
+require_once "./../../../components/forum.php";
+require_once "./../connection.php";
 
 $tableForumAnswers = "answers";
 
@@ -52,11 +52,4 @@ function insertForumAnswer($row)
     } else {
         echo "<div style='border: 2px red solid;color: red'>Error:While inserting!</div>";
     }
-}
-
-function getForumAnswers()
-{
-    global $connection;
-    global $tableForumAnswers;
-//    $sql =
 }

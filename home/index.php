@@ -25,7 +25,6 @@ $questionYear = 2018;
 $questionNumber = 32;
 $questionSubjectCode = "phy";
 $username = $_POST["username"];
-$answer = array('owner' => 'hirantha' , 'answer_text' => 'answer textsdsadaddsadsad asd asd asd asd sa da',"likes" => 10,"dislikes" => 15);
 
 ?>
 
@@ -44,26 +43,36 @@ $answer = array('owner' => 'hirantha' , 'answer_text' => 'answer textsdsadaddsad
 </head>
 <body>
 <?php include_once "./../components/nav_bar.php" ?>
-<?php echo createQuestion($questionYear, $questionNumber,$questionSubjectCode) ?>
+<?php echo createQuestion($questionYear, $questionNumber, $questionSubjectCode) ?>
 <div id="answers-container">
-    <?php echo createAnswer($answer); ?>
-    <?php echo createAnswer($answer); ?>
-    <?php echo createAnswer($answer); ?>
-    <?php echo createAnswer($answer); ?>
 </div>
 <?php echo createInsertBoard(); ?>
 
 <script>
     $(document).ready(function () {
+
+        $.ajax({
+            url: "./../controllers/database/forum/read_answers.php",
+            method:'get',
+            success: function (data) {
+                document.getElementById("answers-container").innerHTML += data;
+            },
+            error: function (e) {
+                console.log(e.message);
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+
         $('#answer-form').on('submit', function (e) {
             e.preventDefault();
             var data = $('#answer-form').serializeArray();
-            data.push({name:"owner",value:"<?php echo $username ?>"});
-            data.push({name:"question_year",value:"<?php echo $questionYear?>"});
-            data.push({name:"question_number",value:"<?php echo $questionNumber ?>"});
-            data.push({name:"question_subject_code",value:"<?php echo $questionSubjectCode ?>"});
+            data.push({name: "owner", value: "<?php echo $username ?>"});
+            data.push({name: "question_year", value: "<?php echo $questionYear?>"});
+            data.push({name: "question_number", value: "<?php echo $questionNumber ?>"});
+            data.push({name: "question_subject_code", value: "<?php echo $questionSubjectCode ?>"});
             $.ajax({
-                    url: './../controllers/database/forum_queries.php',
+                    url: './../controllers/database/forum/insert.php',
                     data: data,
                     method: 'post',
                     success: function (data) {
