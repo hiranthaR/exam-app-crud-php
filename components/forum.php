@@ -78,7 +78,7 @@ function createAnswer($answer)
 <div class='answer-box-user-band'>
 
 <img src='./../icons/user.png' alt='user' style='height: 18px;width: 18px;float: left'>
-<a href='#' style='color: white;text-decoration: none'>
+<a href='#' style='color: white;text-decoration: none;font-weight: bold'>
 <span style='margin-left: 3px;'>" . $owner . "</span>
 </a>
 
@@ -102,9 +102,9 @@ function createAnswer($answer)
 
 </div>
 <div class='answer-box-edit-band' hidden id='edit-band-" . $answerID . "'>
-<form style='text-align: right' id='edit-form-" . $answerID . "'>
+<form onsubmit='onEditFormSubmit(event," . $answerID . ")' style='text-align: right' id='edit-form-" . $answerID . "'>
 <textarea rows='5' form='edit-form-" . $answerID . "' name='answer_text' style='resize: none;width: 100%;font-size: 14px'>" . str_replace("</br>", "\r\n", $answerText) . "</textarea>
- <br>
+ <br><br>
     <input type='submit' value='Edit Answer' class='form-button'>
 </form>
 </div>
@@ -118,7 +118,7 @@ function createInsertBoard()
     <div style='background-color: #454545;color: white;font-size: 18px;padding: 2px 7px'>Add new Comment</div>
     <form id='answer-form' style='padding: 10px;text-align: right'>
     <textarea rows='5' form='answer-form' name='answer_text' style='resize: none;width: 100%;font-size: 14px'></textarea>
-    <br>
+    <br><br>
     <input type='submit' value='Add answer' class='form-button'>
 </form>
 </div>";

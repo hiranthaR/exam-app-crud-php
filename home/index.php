@@ -52,6 +52,13 @@ $username = $_POST["username"];
 
 <script>
 
+    function onEditFormSubmit(event,id) {
+        event.preventDefault();
+        $.ajax({
+           url:
+        });
+    }
+
     function showHideBand(id) {
         document.getElementById("edit-band-" + id).hidden = !document.getElementById("edit-band-" + id).hidden;
     }
